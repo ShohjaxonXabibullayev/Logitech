@@ -123,6 +123,17 @@
       background-color: #008bbd;
     }
 
+    .success-message {
+      max-width: 600px;
+      margin: 20px auto;
+      padding: 15px;
+      background-color: #d4edda;
+      color: #155724;
+      border: 1px solid #c3e6cb;
+      border-radius: 5px;
+      text-align: center;
+    }
+
     footer {
       background-color: #000;
       color: #aaa;
@@ -152,7 +163,7 @@
       <nav>
         <ul>
           <li><a href="{% url 'home' %}">Bosh sahifa</a></li>
-          <li><a href="#">Mahsulotlar</a></li>
+          <li><a href="{% url 'products' %}">Mahsulotlar</a></li>
           <li><a href="{% url 'about' %}">Biz haqimizda</a></li>
         </ul>
       </nav>
@@ -175,16 +186,15 @@
       <p><strong>Manzil:</strong> Toshkent shahri, Mustaqillik ko‘chasi 10</p>
     </div>
 
-    <form>
-      <label for="name">Ismingiz</label>
-      <input type="text" id="name" name="name" placeholder="Ismingizni kiriting" required>
+    {% if success %}
+      <div class="success-message">
+        Xabaringiz muvaffaqiyatli yuborildi!
+      </div>
+    {% endif %}
 
-      <label for="email">Email manzilingiz</label>
-      <input type="email" id="email" name="email" placeholder="Emailni kiriting" required>
-
-      <label for="message">Xabar</label>
-      <textarea id="message" name="message" rows="5" placeholder="Xabaringizni yozing..." required></textarea>
-
+    <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
       <button type="submit">Yuborish</button>
     </form>
   </section>
@@ -196,3 +206,4 @@
 
 </body>
 </html>
+

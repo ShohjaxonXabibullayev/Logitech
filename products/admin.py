@@ -9,4 +9,4 @@ class ProductsAdmin(admin.ModelAdmin):
 
 admin.site.register(Techs, ProductsAdmin)
 admin.site.register(Catagory)
-
+admin.site.register(Comment)

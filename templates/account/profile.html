@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>Profil sahifasi</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f4f6;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 60px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #1f2937;
+        }
+
+        .profile-info {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .profile-info label {
+            font-weight: bold;
+            color: #374151;
+        }
+
+        .profile-info p {
+            margin: 0;
+            color: #111827;
+        }
+
+        .btn-group {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 5px 10px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+            color: white;
+        }
+
+        .btn-home {
+            background-color: #28a745;
+        }
+
+        .btn-home:hover {
+            background-color: #218838;
+        }
+
+        .btn-change-pass {
+            background-color: #17a2b8;
+        }
+
+        .btn-change-pass:hover {
+            background-color: #117a8b;
+        }
+
+        .btn-update {
+            background-color: #007bff;
+        }
+
+        .btn-update:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Foydalanuvchi Profili</h2>
+    <div class="profile-info">
+        <div>
+            <label>Ismi:</label>
+            <p>{{ user.first_name }}</p>
+        </div>
+        <div>
+            <label>Familiyasi:</label>
+            <p>{{ user.last_name }}</p>
+        </div>
+        <div>
+            <label>Foydalanuvchi nomi:</label>
+            <p>{{ user.username }}</p>
+        </div>
+        <div>
+            <label>Email manzili:</label>
+            <p>{{ user.email }}</p>
+        </div>
+    </div>
+
+    <div class="btn-group">
+        <a href="{% url 'home' %}" class="btn btn-home">🏠 Home page</a>
+        <a href="{% url 'change-pass' %}" class="btn btn-change-pass">🔐 Change password</a>
+        <a href="{% url 'update_profile' %}" class="btn btn-update">📝 Update profile</a>
+    </div>
+</div>
+
+</body>
+</html>

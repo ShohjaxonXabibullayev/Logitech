@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>O'chirish</title>
+</head>
+<body>
+    <h2>Haqiqatan ham "{{ mahsulot.title }}" mahsulotini o'chirmoqchimisiz?</h2>
+
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Ha, o'chirish</button>
+        <a href="{% url 'products' %}">Bekor qilish</a>
+    </form>
+</body>
+</html>

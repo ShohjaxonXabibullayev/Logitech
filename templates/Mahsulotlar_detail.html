@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ mahsulot.title }}</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 30px auto;
+            background-color: white;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .image {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 28px;
+        }
+
+        .info {
+            margin: 15px 0;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+
+        .buttons {
+            margin-top: 25px;
+        }
+
+        .buttons a {
+            display: inline-block;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            color: white;
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        .edit-btn {
+            background-color: #007bff;
+        }
+
+        .delete-btn {
+            background-color: #dc3545;
+        }
+
+        .back-link {
+            margin-top: 20px;
+            display: inline-block;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        /* Comments */
+        .comments {
+            margin-top: 40px;
+        }
+
+        .comment {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .comment .user {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .comment .date {
+            font-size: 14px;
+            color: #999;
+        }
+
+        .comment-form {
+            margin-top: 30px;
+        }
+
+        .comment-form textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+            resize: vertical;
+            font-size: 16px;
+            height: 100px;
+        }
+
+        .comment-form button {
+            margin-top: 10px;
+            padding: 10px 20px;
+            border: none;
+            background-color: #28a745;
+            color: white;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        .comment-actions {
+            margin-top: 5px;
+        }
+
+        .comment-actions a {
+            margin-right: 10px;
+            font-size: 14px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .comment-actions a:hover {
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="{{ mahsulot.image.url }}" alt="mahsulot rasmi" class="image">
+
+    <h2>{{ mahsulot.title }}</h2>
+    <div class="info">
+        <p><strong>Camerasi:</strong> {{ mahsulot.camera }}</p>
+        <p><strong>Batareyasi:</strong> {{ mahsulot.batareya }}</p>
+        <p><strong>Xususiyati:</strong> {{ mahsulot.harakteri }}</p>
+        <p><strong>Narxi:</strong> {{ mahsulot.price }} so'm</p>
+        <p><strong>Tavsif:</strong><br>{{ mahsulot.deck }}</p>
+    </div>
+
+    <div class="buttons">
+        <a href="{% url 'mahsulot_update' mahsulot.id %}" class="edit-btn">✏ Tahrirlash</a>
+        <a href="{% url 'mahsulot_delete' mahsulot.id %}" class="delete-btn">🗑 O'chirish</a>
+    </div>
+
+    <a href="{% url 'products' %}" class="back-link">⬅ Orqaga</a>
+
+    <!-- Comments section -->
+    <div class="comments">
+        <h3>💬 Fikrlar </h3>
+        {% for comment in comments %}
+            <div class="comment">
+                <div class="user">{{ comment.user.username }}</div>
+                <div class="date">{{ comment.created_at|date:"d-m-Y H:i" }}</div>
+                <div class="text">{{ comment.text }}</div>
+
+                {% if user == comment.user %}
+                    <div class="comment-actions">
+                        <a href="{% url 'comment_edit' comment.pk %}">✏ Tahrirlash</a>
+                        <a href="{% url 'comment_delete' comment.pk %}">🗑 O'chirish</a>
+                    </div>
+                {% endif %}
+            </div>
+        {% empty %}
+            <p>Hozircha izohlar mavjud emas.</p>
+        {% endfor %}
+    </div>
+
+    <!-- Yangi comment formi -->
+    <div class="comment-form">
+        <h4>📝 Fikr qoldiring:</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.text }}
+            <button type="submit">Yuborish</button>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

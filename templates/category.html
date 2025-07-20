@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kategoriya</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #222;
+            color: white;
+            padding: 15px;
+            text-align: center;
+        }
+
+        nav {
+            background: #333;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            color: #00aced;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+            padding: 30px 20px;
+        }
+
+        .news-card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .news-card h3 {
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .news-card p {
+            color: #555;
+        }
+
+        .news-card a {
+            display: inline-block;
+            margin-top: 10px;
+            color: #00aced;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .news-card a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #222;
+            color: white;
+            padding: 20px;
+            text-align: center;
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        {% for cat in categories %}
+        <a href="{% url 'category' cat.id %}" class="create-btn">{{ cat.name }}</a>
+        {% endfor %}
+    </header>
+
+    <nav>
+        <a href="{% url 'home' %}">Bosh sahifa</a>
+        <a href="{% url 'products' %}">Mahsulotlar</a>
+        <a href="{% url 'about' %}">Biz haqimizda</a>
+        <a href="{% url 'contact' %}">Aloqa</a>
+    </nav>
+
+    <div class="container">
+        {% if tech %}
+            {% for item in tech %}
+                <div class="news-card">
+                    <h3>{{ item.title }}</h3>
+                    <p>{{ item.body|truncatewords:30 }}</p>
+                    <a href="{% url 'products_detail' item.id %}">Batafsil o'qish</a>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p>Bu bo‘limda hozircha yangiliklar yo‘q.</p>
+        {% endif %}
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Logitech Sayti</p>
+    </footer>
+
+</body>
+</html>

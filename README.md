@@ -26,8 +26,8 @@ Sayt orqali mahsulotlarni yaratish, tahrirlash, ko‘rish hamda o‘chirish imko
 2️⃣ Loyihani yuklab olish
 cmd iga git clone https://github.com/ShohjaxonXabibullayev/Logitech deb yozasiz
 
-Loyiha papkasiga kirish
-3️⃣cmd iga cd Logitech deb yozasiz
+3️⃣Loyiha papkasiga kirish
+cmd iga cd Logitech deb yozasiz
 
 4️⃣ Virtual muhit yaratish va faollashtirish
 python -m venv .env

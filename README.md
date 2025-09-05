@@ -20,6 +20,7 @@ Sayt orqali mahsulotlarni yaratish, tahrirlash, ko‘rish hamda o‘chirish imko
 🔐 Ro‘yxatdan o‘tish, login, profil sahifalari
 
 🖥️ Localhost’da ishga tushirish
+
 1️⃣ Stolda papka ochib olish va uninig ichiga kirib cmd ni ochib olish kerak 
 
 2️⃣ Loyihani yuklab olish

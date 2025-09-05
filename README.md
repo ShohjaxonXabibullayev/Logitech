@@ -37,7 +37,9 @@ source .env/bin/activate   # Linux/MacOS
 .env\Scripts\activate      # Windows
 
 6️⃣ Kerakli kutubxonalarni o‘rnatish
+
 pip install Django
+
 pip install -r requirements.txt
 
 7️⃣ Serverni ishga tushirish
